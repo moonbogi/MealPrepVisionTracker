@@ -1,0 +1,49 @@
+# Xcode
+.DS_Store
+*.swp
+*~.nib
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+*.xcscmblueprint
+xcuserdata/
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.swiftpm/
+.build/
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+
+# Accidental backups
+*.moved-aside
+*.xccheckout
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Build artifacts
+*.o
+*.LinkFileList
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Temporary files
+*.tmp
+*.temp
