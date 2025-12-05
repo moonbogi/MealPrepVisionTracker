@@ -150,22 +150,38 @@ class RecipesViewController: UIViewController, RecipesPresentable {
 extension RecipesViewController: RecipeFromImageDelegate {
     func didGenerateRecipe(_ detectedRecipe: DetectedRecipe) {
         // Convert DetectedRecipe to Recipe model
-        let ingredients = detectedRecipe.ingredients.map { recipeIngredient in
-            Ingredient(
-                name: recipeIngredient.name,
-                category: .other,
-                quantity: Double(recipeIngredient.quantity) ?? 1.0,
-                unit: .item
+        let recipeIngredients = detectedRecipe.ingredients.map { detectedIngredient in
+            RecipeIngredient(
+                name: detectedIngredient.name,
+                quantity: Double(detectedIngredient.quantity) ?? 1.0,
+                unit: .item,
+                notes: detectedIngredient.unit
             )
         }
+        
+        // Create basic nutritional info (can be enhanced later)
+        let nutritionalInfo = NutritionalInfo(
+            calories: 0,
+            protein: 0,
+            carbohydrates: 0,
+            fat: 0,
+            fiber: 0,
+            sugar: 0
+        )
         
         let recipe = Recipe(
             name: detectedRecipe.name,
             description: detectedRecipe.description,
-            ingredients: ingredients,
+            requiredIngredients: recipeIngredients,
+            optionalIngredients: [],
             instructions: detectedRecipe.instructions,
             prepTime: detectedRecipe.estimatedPrepTime,
-            servings: detectedRecipe.estimatedServings
+            cookTime: 0,
+            servings: detectedRecipe.estimatedServings,
+            difficulty: .medium,
+            nutritionalInfo: nutritionalInfo,
+            imageURL: nil,
+            tags: []
         )
         
         // Save recipe using RecipeService

@@ -259,7 +259,7 @@ class RecipeAIService {
     private func generateMockRecipe(from foodItems: [String]) -> DetectedRecipe {
         let recipeName = generateRecipeName(from: foodItems)
         let ingredients = foodItems.prefix(5).map { item in
-            RecipeIngredient(name: item, quantity: "1", unit: "serving")
+            DetectedIngredient(name: item, quantity: "1", unit: "serving")
         }
         
         let instructions = [
