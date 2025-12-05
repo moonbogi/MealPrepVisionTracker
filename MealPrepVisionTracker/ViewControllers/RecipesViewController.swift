@@ -60,7 +60,18 @@ class RecipesViewController: UIViewController, RecipesPresentable {
         title = "Recipes"
         view.backgroundColor = .systemBackground
         
+        setupNavigationBar()
         setupUI()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "photo.on.rectangle.angled"),
+            style: .plain,
+            target: self,
+            action: #selector(generateFromImageTapped)
+        )
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "Generate recipe from image"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,6 +135,52 @@ class RecipesViewController: UIViewController, RecipesPresentable {
         showingMatches = segmentedControl.selectedSegmentIndex == 0
         updateEmptyState()
         tableView.reloadData()
+    }
+    
+    @objc private func generateFromImageTapped() {
+        let recipeFromImageVC = RecipeFromImageViewController()
+        recipeFromImageVC.delegate = self
+        let navController = UINavigationController(rootViewController: recipeFromImageVC)
+        present(navController, animated: true)
+    }
+}
+
+// MARK: - RecipeFromImageDelegate
+
+extension RecipesViewController: RecipeFromImageDelegate {
+    func didGenerateRecipe(_ detectedRecipe: DetectedRecipe) {
+        // Convert DetectedRecipe to Recipe model
+        let ingredients = detectedRecipe.ingredients.map { recipeIngredient in
+            Ingredient(
+                name: recipeIngredient.name,
+                category: .other,
+                quantity: Double(recipeIngredient.quantity) ?? 1.0,
+                unit: .item
+            )
+        }
+        
+        let recipe = Recipe(
+            name: detectedRecipe.name,
+            description: detectedRecipe.description,
+            ingredients: ingredients,
+            instructions: detectedRecipe.instructions,
+            prepTime: detectedRecipe.estimatedPrepTime,
+            servings: detectedRecipe.estimatedServings
+        )
+        
+        // Save recipe using RecipeService
+        RecipeService.shared.addRecipe(recipe)
+        
+        // Show success message
+        let alert = UIAlertController(
+            title: "Recipe Saved!",
+            message: "\(recipe.name) has been added to your recipes.",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+            self?.recipesListener?.viewDidAppear() // Refresh list
+        })
+        present(alert, animated: true)
     }
 }
 

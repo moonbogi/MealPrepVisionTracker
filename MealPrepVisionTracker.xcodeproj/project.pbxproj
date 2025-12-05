@@ -46,6 +46,8 @@
 		A1000101000000000000001 /* NutritionixService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000102000000000000001 /* NutritionixService.swift */; };
 		A1000103000000000000001 /* IngredientSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000104000000000000001 /* IngredientSearchViewController.swift */; };
 		A1000105000000000000001 /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000106000000000000001 /* IngredientDetailViewController.swift */; };
+		A1000108000000000000001 /* RecipeAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000109000000000000001 /* RecipeAIService.swift */; };
+		A1000110000000000000001 /* RecipeFromImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000111000000000000001 /* RecipeFromImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,8 @@
 		A1000102000000000000001 /* NutritionixService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionixService.swift; sourceTree = "<group>"; };
 		A1000104000000000000001 /* IngredientSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSearchViewController.swift; sourceTree = "<group>"; };
 		A1000106000000000000001 /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
+		A1000109000000000000001 /* RecipeAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeAIService.swift; sourceTree = "<group>"; };
+		A1000111000000000000001 /* RecipeFromImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeFromImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,7 @@
 				A1000098000000000000001 /* OnboardingViewController.swift */,
 				A1000104000000000000001 /* IngredientSearchViewController.swift */,
 				A1000106000000000000001 /* IngredientDetailViewController.swift */,
+				A1000111000000000000001 /* RecipeFromImageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				A1000032000000000000001 /* PersistenceManager.swift */,
 				A1000092000000000000001 /* CoreDataManager.swift */,
 				A1000102000000000000001 /* NutritionixService.swift */,
+				A1000109000000000000001 /* RecipeAIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -370,6 +376,8 @@
 				A1000101000000000000001 /* NutritionixService.swift in Sources */,
 				A1000103000000000000001 /* IngredientSearchViewController.swift in Sources */,
 				A1000105000000000000001 /* IngredientDetailViewController.swift in Sources */,
+				A1000108000000000000001 /* RecipeAIService.swift in Sources */,
+				A1000110000000000000001 /* RecipeFromImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
