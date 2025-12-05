@@ -95,4 +95,19 @@ enum MeasurementUnit: String, Codable, CaseIterable {
         case .liter: return "L"
         }
     }
+    
+    var displayName: String {
+        switch self {
+        case .item: return "Item"
+        case .gram: return "Gram"
+        case .kilogram: return "Kilogram"
+        case .ounce: return "Ounce"
+        case .pound: return "Pound"
+        case .cup: return "Cup"
+        case .tablespoon: return "Tablespoon"
+        case .teaspoon: return "Teaspoon"
+        case .milliliter: return "Milliliter"
+        case .liter: return "Liter"
+        }
+    }
 }

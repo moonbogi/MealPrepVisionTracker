@@ -102,12 +102,21 @@ class IngredientsViewController: UIViewController, IngredientsPresentable {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        let addManualButton = UIBarButtonItem(
             image: UIImage(systemName: "plus"),
             style: .plain,
             target: self,
             action: #selector(addIngredientManually)
         )
+        
+        let searchAPIButton = UIBarButtonItem(
+            image: UIImage(systemName: "magnifyingglass.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(searchFromAPI)
+        )
+        
+        navigationItem.rightBarButtonItems = [addManualButton, searchAPIButton]
     }
     
     // MARK: - IngredientsPresentable
@@ -122,8 +131,37 @@ class IngredientsViewController: UIViewController, IngredientsPresentable {
     // MARK: - Private
     
     private func updateEmptyState() {
-        emptyStateView.isHidden = !ingredients.isEmpty
-        tableView.isHidden = ingredients.isEmpty
+        let dataToShow = isSearching ? filteredIngredients : ingredients
+        let isEmpty = dataToShow.isEmpty
+        
+        if isSearching && isEmpty {
+            // Show search-specific empty state
+            emptyStateView.configure(
+                image: UIImage(systemName: "magnifyingglass"),
+                title: "No Results Found",
+                message: "No ingredients match '\(searchController.searchBar.text ?? "")'",
+                actionTitle: nil,
+                actionHandler: nil
+            )
+            emptyStateView.isHidden = false
+            tableView.isHidden = true
+        } else if !isSearching && isEmpty {
+            // Show default empty state
+            emptyStateView.configure(
+                image: UIImage(systemName: "basket"),
+                title: "No Ingredients Yet",
+                message: "Start building your pantry by scanning ingredients with your camera.",
+                actionTitle: "Scan Ingredient",
+                actionHandler: { [weak self] in
+                    self?.tabBarController?.selectedIndex = 0
+                }
+            )
+            emptyStateView.isHidden = false
+            tableView.isHidden = true
+        } else {
+            emptyStateView.isHidden = true
+            tableView.isHidden = false
+        }
     }
     
     // MARK: - Actions
@@ -142,6 +180,22 @@ class IngredientsViewController: UIViewController, IngredientsPresentable {
         })
         
         present(alert, animated: true)
+    }
+    
+    @objc private func searchFromAPI() {
+        let searchVC = IngredientSearchViewController()
+        searchVC.delegate = self
+        let navController = UINavigationController(rootViewController: searchVC)
+        present(navController, animated: true)
+    }
+}
+
+// MARK: - IngredientSearchDelegate
+
+extension IngredientsViewController: IngredientSearchDelegate {
+    func didSelectIngredient(_ ingredient: Ingredient) {
+        // Ingredient already saved to Core Data by IngredientDetailViewController
+        ingredientsListener?.viewDidAppear() // Refresh the list
     }
 }
 
@@ -216,14 +270,21 @@ extension IngredientsViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text, !searchText.isEmpty else {
             isSearching = false
             filteredIngredients = ingredients
+            updateEmptyState()
             tableView.reloadData()
             return
         }
         
         isSearching = true
         filteredIngredients = ingredients.filter { ingredient in
-            ingredient.name.lowercased().contains(searchText.lowercased())
+            // Search in name, category, and quantity unit
+            let searchLower = searchText.lowercased()
+            return ingredient.name.lowercased().contains(searchLower) ||
+                   ingredient.category.displayName.lowercased().contains(searchLower) ||
+                   ingredient.unit.rawValue.lowercased().contains(searchLower) ||
+                   ingredient.unit.abbreviation.lowercased().contains(searchLower)
         }
+        updateEmptyState()
         tableView.reloadData()
     }
 }

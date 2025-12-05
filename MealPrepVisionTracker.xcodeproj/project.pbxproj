@@ -41,6 +41,11 @@
 		A1000083000000000000001 /* NutritionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000084000000000000001 /* NutritionRouter.swift */; };
 		A1000091000000000000001 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000092000000000000001 /* CoreDataManager.swift */; };
 		A1000093000000000000001 /* MealPrepModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1000094000000000000001 /* MealPrepModel.xcdatamodeld */; };
+		A1000097000000000000001 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000098000000000000001 /* OnboardingViewController.swift */; };
+		A1000099000000000000001 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000100000000000000001 /* EmptyStateView.swift */; };
+		A1000101000000000000001 /* NutritionixService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000102000000000000001 /* NutritionixService.swift */; };
+		A1000103000000000000001 /* IngredientSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000104000000000000001 /* IngredientSearchViewController.swift */; };
+		A1000105000000000000001 /* IngredientDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000106000000000000001 /* IngredientDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +85,11 @@
 		A1000084000000000000001 /* NutritionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionRouter.swift; sourceTree = "<group>"; };
 		A1000092000000000000001 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A1000094000000000000001 /* MealPrepModel.xcdatamodeld */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodeld; path = MealPrepModel.xcdatamodeld; sourceTree = "<group>"; };
+		A1000098000000000000001 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		A1000100000000000000001 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		A1000102000000000000001 /* NutritionixService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionixService.swift; sourceTree = "<group>"; };
+		A1000104000000000000001 /* IngredientSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSearchViewController.swift; sourceTree = "<group>"; };
+		A1000106000000000000001 /* IngredientDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +126,7 @@
 				A1000085000000000000001 /* RIBs */,
 				A1000039000000000000001 /* Models */,
 				A1000040000000000000001 /* ViewControllers */,
+				A1000107000000000000001 /* Views */,
 				A1000041000000000000001 /* Services */,
 				A1000042000000000000001 /* Resources */,
 				A1000033000000000000001 /* Info.plist */,
@@ -153,6 +164,9 @@
 				A1000016000000000000001 /* NutritionViewController.swift */,
 				A1000018000000000000001 /* IngredientResultViewController.swift */,
 				A1000020000000000000001 /* RecipeDetailViewController.swift */,
+				A1000098000000000000001 /* OnboardingViewController.swift */,
+				A1000104000000000000001 /* IngredientSearchViewController.swift */,
+				A1000106000000000000001 /* IngredientDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -164,10 +178,20 @@
 				A1000030000000000000001 /* RecipeService.swift */,
 				A1000032000000000000001 /* PersistenceManager.swift */,
 				A1000092000000000000001 /* CoreDataManager.swift */,
+				A1000102000000000000001 /* NutritionixService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A1000107000000000000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1000100000000000000001 /* EmptyStateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+
 		A1000042000000000000001 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +365,11 @@
 				A1000083000000000000001 /* NutritionRouter.swift in Sources */,
 				A1000091000000000000001 /* CoreDataManager.swift in Sources */,
 				A1000093000000000000001 /* MealPrepModel.xcdatamodeld in Sources */,
+				A1000097000000000000001 /* OnboardingViewController.swift in Sources */,
+				A1000099000000000000001 /* EmptyStateView.swift in Sources */,
+				A1000101000000000000001 /* NutritionixService.swift in Sources */,
+				A1000103000000000000001 /* IngredientSearchViewController.swift in Sources */,
+				A1000105000000000000001 /* IngredientDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
